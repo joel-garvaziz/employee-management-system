@@ -1,0 +1,11 @@
+services:
+  flask:
+    build: .
+    container_name: employee_flask
+    restart: always
+
+    env_file:
+      - .env
+
+    ports:
+      - "5000:5000"
