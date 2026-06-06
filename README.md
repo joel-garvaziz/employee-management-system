@@ -86,7 +86,7 @@ graph TD
     Nginx -->|Proxy Pass| Flask[Flask App Container]
     Flask -->|SQLAlchemy ORM| MySQL[(MySQL Container)]
     
-    subgraph AWS Cloud Watch Monitoring
+    subgraph AWS CloudWatch Monitoring
         Flask -.-> CW[CloudWatch Agent]
         MySQL -.-> CW
         CW --> Dash[CloudWatch Dashboard]
