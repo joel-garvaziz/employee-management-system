@@ -45,7 +45,7 @@ def employees():
     if "user_id" not in session:
         return redirect("/")
     if session.get("role") != "admin":
-        return "Access Denied"
+        return render_template("access_denied.html")
 
     employee_list = Employee.query.all()
 
@@ -62,7 +62,7 @@ def add_employee_page():
         return redirect("/")
 
     if session.get("role") != "admin":
-        return "Access Denied"
+        return render_template("access_denied.html")
 
     return render_template(
         "add_employee.html"
@@ -93,7 +93,7 @@ def edit_employee_page(id):
         return redirect("/")
 
     if session.get("role") != "admin":
-        return "Access Denied"
+        return render_template("access_denied.html")
 
     employee = Employee.query.get_or_404(id)
 
@@ -112,7 +112,7 @@ def edit_employee(id):
     employee = Employee.query.get_or_404(id)
 
     if session.get("role") != "admin":
-     return "Access Denied"
+        return render_template("access_denied.html")
     employee.name = request.form["name"]
     employee.department = request.form["department"]
     employee.salary = request.form["salary"]
@@ -127,7 +127,7 @@ def delete_employee(id):
         return redirect("/")
     
     if session.get("role") != "admin":
-        return "Access Denied"
+        return render_template("access_denied.html")
 
     employee = Employee.query.get_or_404(id)
 

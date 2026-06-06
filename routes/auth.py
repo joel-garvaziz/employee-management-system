@@ -73,7 +73,10 @@ def login():
 
         return redirect("/dashboard")
 
-    return "Invalid Credentials"
+    return render_template(
+    "login.html",
+    error="Invalid email or password"
+)
 
 
 @auth_bp.route("/dashboard")
