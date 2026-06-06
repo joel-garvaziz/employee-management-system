@@ -5,6 +5,7 @@ from models.employee import Employee
 from models.user import db
 from routes.auth import auth_bp
 from routes.employee import employee_bp
+import time
 
 app = Flask(__name__)
 
@@ -17,7 +18,14 @@ app.register_blueprint(auth_bp)
 app.register_blueprint(employee_bp)
 
 with app.app_context():
-    db.create_all()
+    for attempt in range(10):
+        try:
+            db.create_all()
+            print("Database connected successfully!")
+            break
+        except Exception as e:
+            print(f"Database not ready, retrying... ({attempt+1}/10)")
+            time.sleep(5)
 
 if __name__ == "__main__":
     app.run(
