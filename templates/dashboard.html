@@ -10,20 +10,25 @@
 
 <body>
 
-<div class="container mt-5">
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
 
-    <h2 class="mb-4">Employee Management Dashboard</h2>
+        <span class="navbar-brand">
+            Employee Management System
+        </span>
 
-    <div class="row">
+        <div>
+            <a href="/employees" class="btn btn-primary me-2">
+                Employees
+            </a>
 
-        <div class="col-md-4">
-            <div class="card text-center shadow">
-                <div class="card-body">
-                    <h5>Total Employees</h5>
-                    <h1>{{ total_employees }}</h1>
-                </div>
-            </div>
+            <a href="/logout" class="btn btn-danger">
+                Logout
+            </a>
         </div>
+
+    </div>
+</nav>
 
         <div class="col-md-4">
             <div class="card text-center shadow">
