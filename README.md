@@ -1,250 +1,391 @@
-# 🏢 Employee Management System
+# Employee Management System
 
-[![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com/)
-[![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
-[![AWS](https://img.shields.io/badge/AWS_EC2-FF9900?style=for-the-badge&logo=amazon-aws&logoColor=white)](https://aws.amazon.com/)
-[![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white)](https://nginx.org/)
-[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)](https://github.com/features/actions)
+A production-ready Employee Management System built using Flask, MySQL, Docker, AWS EC2, Nginx, GitHub Actions CI/CD, Amazon CloudWatch, and Let's Encrypt SSL.
 
-A production-ready **Employee Management System** built using Flask, MySQL, Docker, AWS EC2, Nginx, GitHub Actions CI/CD, Amazon CloudWatch, and Let's Encrypt SSL.
-
-This project was developed as a **Cloud & DevOps Capstone Project** to demonstrate full-stack application development, cloud deployment, containerization, security implementation, CI/CD automation, monitoring, and Linux server administration.
+This project was developed as a Cloud & DevOps Capstone Project to demonstrate full-stack application development, cloud deployment, containerization, security implementation, CI/CD automation, monitoring, and Linux server administration.
 
 ---
 
-## 🌐 Live Application
+# Live Application
 
-> **Production URL:** [https://joel-ems.duckdns.org](https://joel-ems.duckdns.org)
-
----
-
-## 📝 Project Overview
-
-The Employee Management System provides secure user authentication and employee management functionality through a web-based interface. 
-
-The application supports **Role-Based Access Control (RBAC)** where administrators can manage employee records while standard users have restricted access. The entire application is containerized using Docker, deployed on AWS EC2, secured with HTTPS, monitored using Amazon CloudWatch, and automatically deployed through GitHub Actions.
+🌐 https://joel-ems.duckdns.org
 
 ---
 
-## ✨ Features
+# Project Overview
 
-### 🔐 Authentication & Authorization
-* 👤 **User Registration & Login/Logout**
-* 🛡️ **Password Hashing:** Secure storage using `Bcrypt`.
-* ⏱️ **Session-Based Authentication:** Safe user session handling.
-* 🚦 **Role-Based Access Control:** Admin vs. Standard User permissions.
-* 🚫 **Error Handling:** Graceful handling of invalid credentials and custom **Access Denied** pages for unauthorized routes.
-* 🏷️ **Role Display:** Dynamic UI rendering based on user role (Admin/User).
+The Employee Management System provides secure user authentication and employee management functionality through a web-based interface.
 
-### 👥 Employee Management
-* ➕ **Create Employee:** Administrators can add new employees.
-* 👁️ **View Employees:** Administrators can view all employee records.
-* ✏️ **Edit Employee:** New updates can be pushed to existing records by admins.
-* ❌ **Delete Employee:** Administrators can permanently remove employee records.
+The application supports role-based access control where administrators can manage employee records while standard users have restricted access.
 
-### 🔒 Security Features
-* Standardized password hashing using **Bcrypt**.
-* Full **HTTPS Encryption** utilizing automated Let's Encrypt SSL certificates.
-* Strict Role-Based Access Control enforcement.
-* Secure **Environment Variable** configurations (no hardcoded secrets).
-* **Nginx Reverse Proxy** shielding the application server.
-* Tight **AWS Security Group** configurations (minimizing open ports).
-* **SSH Key-Based Authentication** for server access.
-
-### ☁️ Cloud & DevOps Features
-* **AWS EC2 Deployment:** Hosted on a stable Ubuntu 24.04 LTS server.
-* **Docker Containerization:** Application and database split into isolated containers.
-* **Docker Compose Orchestration:** Simplified multi-container runtime management.
-* **GitHub Actions CI/CD Pipeline:** Fully automated testing and deployment on git push.
-* **Amazon CloudWatch Monitoring:** Real-time infrastructure tracking.
-* **DuckDNS Integration:** Dynamic custom domain mapping.
+The entire application is containerized using Docker, deployed on AWS EC2, secured with HTTPS, monitored using Amazon CloudWatch, and automatically deployed through GitHub Actions.
 
 ---
 
-## 🛠️ Technology Stack
+# Features
 
-| Layer | Technologies Used |
-| :--- | :--- |
-| **Frontend** | `HTML5`, `Bootstrap 5` |
-| **Backend** | `Python`, `Flask`, `SQLAlchemy`, `Flask-Bcrypt` |
-| **Database** | `MySQL 8` |
-| **DevOps & Containers** | `Docker`, `Docker Compose` |
-| **CI/CD** | `GitHub Actions` |
-| **Cloud Provider** | `AWS EC2`, `Amazon CloudWatch` |
-| **Web Server** | `Nginx` |
-| **DNS & SSL** | `DuckDNS`, `Let's Encrypt` |
+## Authentication & Authorization
+
+* User Registration
+* User Login
+* User Logout
+* Password Hashing using Bcrypt
+* Session-Based Authentication
+* Role-Based Access Control (Admin/User)
+* Invalid Credentials Handling
+* Access Denied Page for Unauthorized Users
+* User Role Display (Admin/User)
 
 ---
 
-## 📐 System Architecture
+## Employee Management
 
-```mermaid
-graph TD
-    User([User Browser]) -->|HTTPS| Duck[DuckDNS Domain]
-    Duck -->|SSL Termination| Nginx[Nginx Reverse Proxy]
-    Nginx -->|Proxy Pass| Flask[Flask App Container]
-    Flask -->|SQLAlchemy ORM| MySQL[(MySQL Container)]
-    
-    subgraph AWS CloudWatch Monitoring
-        Flask -.-> CW[CloudWatch Agent]
-        MySQL -.-> CW
-        CW --> Dash[CloudWatch Dashboard]
-    end
+### Create Employee
+
+Administrators can add new employees.
+
+### View Employees
+
+Administrators can view all employee records.
+
+### Edit Employee
+
+Administrators can update employee information.
+
+### Delete Employee
+
+Administrators can remove employee records.
+
+---
+
+## Security Features
+
+* Password Hashing using Bcrypt
+* HTTPS Encryption using Let's Encrypt SSL
+* Role-Based Access Control
+* Environment Variable Configuration
+* Secure Session Management
+* SSH Key-Based Authentication
+* Nginx Reverse Proxy
+* AWS Security Group Configuration
+
+---
+
+## Cloud & DevOps Features
+
+* AWS EC2 Deployment
+* Ubuntu 24.04 LTS Server
+* Docker Containerization
+* Docker Compose Orchestration
+* GitHub Repository Integration
+* GitHub Actions CI/CD Pipeline
+* Automated Deployment
+* Amazon CloudWatch Monitoring
+* Custom Domain using DuckDNS
+* SSL Certificate Auto Renewal
+
+---
+
+# Technology Stack
+
+## Frontend
+
+* HTML5
+* Bootstrap 5
+
+## Backend
+
+* Python
+* Flask
+* SQLAlchemy
+* Flask-Bcrypt
+
+## Database
+
+* MySQL 8
+
+## DevOps
+
+* Docker
+* Docker Compose
+* GitHub Actions
+
+## Cloud
+
+* AWS EC2
+* Amazon CloudWatch
+
+## Web Server
+
+* Nginx
+
+## DNS & SSL
+
+* DuckDNS
+* Let's Encrypt
+
+---
+
+# System Architecture
 
 User Browser
-    ↓
+↓
 DuckDNS Domain
-    ↓
+↓
 HTTPS (Let's Encrypt SSL)
-    ↓
+↓
 Nginx Reverse Proxy
-    ↓
+↓
 Flask Application (Docker Container)
-    ↓
+↓
 MySQL Database (Docker Container)
 
 Amazon CloudWatch
-    ↓
-Memory Monitoring / Disk Monitoring / Infrastructure Metrics
+↓
+Memory Monitoring
+Disk Monitoring
+Infrastructure Metrics
 
-🏗️ Deployment Architecture
-Infrastructure:
+---
 
-AWS EC2 Single Instance running Ubuntu 24.04 LTS.
+# Deployment Architecture
 
-Strict Public Security Groups (Only HTTP/HTTPS and specific SSH ingress allowed).
+## Infrastructure
 
-Docker Environment:
+### AWS EC2
 
-Flask Container: Python 3.10 runtime environment utilizing SQLAlchemy ORM.
+* Ubuntu 24.04 LTS
+* Public EC2 Instance
+* Security Groups Configured
 
-MySQL Container: MySQL 8 image running with persistent Docker volume attachments to protect data integrity.
+### Docker Environment
 
-Reverse Proxy & SSL:
+#### Flask Container
 
-Nginx: Functions as a reverse proxy handling HTTPS redirection and SSL termination.
+* Python 3.10
+* Flask Application
+* SQLAlchemy ORM
 
-Let's Encrypt: Provisions SSL certificates alongside an automated background cron job for renewal.
+#### MySQL Container
 
-📊 AWS Services Used
-💻 Amazon EC2
-Used for hosting the core application backend, database containers, and web proxy.
+* MySQL 8
+* Persistent Docker Volume Storage
 
-📈 Amazon CloudWatch
-Installed and configured via the CloudWatch Agent on the EC2 instance to gather:
+### Reverse Proxy
 
-Real-Time Memory Utilization
+* Nginx
+* HTTPS Redirection
+* SSL Termination
 
-Disk Utilization / Storage Capacity Metrics
+### Domain
 
-EC2 Infrastructure Metrics & Interactive Dashboards
+* DuckDNS Dynamic DNS
+* Public Domain Mapping
 
-🆔 IAM
-Utilized to delegate tight, least-privilege permissions specifically for the CloudWatch Agent to ship logs and metrics.
+### SSL
 
-🚀 CI/CD Pipeline Workflow
-[ Developer Pushes Code ] ──> [ Triggers GitHub Actions ] ──> [ SSH Connection to EC2 ]
-                                                                       │
-[ Rebuilt & Live Application ] <── [ Replace Old Containers ] <── [ Pull Latest Code ]
-Developer pushes code changes to the GitHub repository.
+* Let's Encrypt Certificate
+* Automated Renewal
 
-The GitHub Actions workflow triggers automatically.
+---
 
-The workflow securely authenticates with the AWS EC2 instance over SSH.
+# AWS Services Used
 
-The server pulls the latest code directly from the main branch.
+## Amazon EC2
 
-Docker containers are dynamically rebuilt and replaced with zero manual interference.
+Used for hosting the application.
 
-🐧 Linux Administration Tasks Performed
-⚙️ Advanced SSH configurations and port security.
+## Amazon CloudWatch
 
-📦 Production-grade Docker & Docker Compose setup.
+Used for:
 
-🌐 Custom Nginx reverse proxy configuration.
+* Memory Monitoring
+* Disk Monitoring
+* Infrastructure Metrics Collection
 
-🔑 Automated SSL generation and renewal script automation.
+## IAM
 
-📉 CloudWatch Agent script configuration and daemon setups.
+Used for CloudWatch Agent permissions.
 
-📁 System log monitoring and service health configuration.
+---
 
-📂 Project Structure
-Plaintext
+# Monitoring & Observability
+
+Amazon CloudWatch Agent is installed and configured on the EC2 instance.
+
+### Metrics Collected
+
+* Memory Utilization
+* Disk Utilization
+* EC2 Infrastructure Metrics
+
+### Monitoring Features
+
+* Real-Time Metrics
+* CloudWatch Dashboard
+* Performance Tracking
+
+---
+
+# CI/CD Pipeline
+
+GitHub Actions is used for Continuous Integration and Continuous Deployment.
+
+## Workflow
+
+1. Developer pushes code to GitHub.
+2. GitHub Actions workflow is triggered.
+3. Workflow connects to AWS EC2 using SSH.
+4. Latest code is pulled.
+5. Docker containers are rebuilt.
+6. Existing containers are replaced.
+7. Updated application is deployed automatically.
+
+---
+
+# Linux Administration Tasks Performed
+
+* SSH Configuration
+* EC2 Server Management
+* Docker Installation
+* Docker Compose Installation
+* Nginx Configuration
+* SSL Certificate Management
+* CloudWatch Agent Configuration
+* Log Monitoring
+* Service Management
+
+---
+
+# Project Structure
+
 employee-management-system/
+
 ├── .github/workflows/
-│   └── deploy.yml          # CI/CD Deployment Workflow
+
+│ └── deploy.yml
+
 ├── models/
-│   ├── employee.py         # Employee Database Model
-│   └── user.py             # User/Auth Database Model
+
+│ ├── employee.py
+
+│ └── user.py
+
 ├── routes/
-│   ├── auth.py             # Authentication Routes
-│   └── employee.py         # Employee Management Routes
-├── templates/              # HTML Frontend Templates
-│   ├── login.html
-│   ├── register.html
-│   ├── dashboard.html
-│   ├── employees.html
-│   ├── add_employee.html
-│   ├── edit_employee.html
-│   └── access_denied.html
-├── app.py                  # Application Entrypoint
-├── config.py               # Application Configurations
-├── Dockerfile              # App Containerization Config
-├── docker-compose.yml      # Multi-container Orchestrating Specs
-├── requirements.txt        # Python App Dependencies
+
+│ ├── auth.py
+
+│ └── employee.py
+
+├── templates/
+
+│ ├── login.html
+
+│ ├── register.html
+
+│ ├── dashboard.html
+
+│ ├── employees.html
+
+│ ├── add_employee.html
+
+│ ├── edit_employee.html
+
+│ └── access_denied.html
+
+├── app.py
+
+├── config.py
+
+├── Dockerfile
+
+├── docker-compose.yml
+
+├── requirements.txt
+
 ├── README.md
+
 └── .gitignore
-💻 Local Development Setup
-1. Clone Repository
-Bash
-git clone [https://github.com/joel-garvaziz/employee-management-system.git](https://github.com/joel-garvaziz/employee-management-system.git)
+
+---
+
+# Local Development Setup
+
+## Clone Repository
+
+git clone https://github.com/joel-garvaziz/employee-management-system.git
+
 cd employee-management-system
-2. Install Dependencies
-Bash
+
+## Install Dependencies
+
 pip install -r requirements.txt
-3. Configure Environment Variables
-Create a local .env file in the root directory and add the following keys:
 
-Code snippet
-DB_HOST=localhost
-DB_USER=your_db_user
-DB_PASSWORD=your_db_password
-DB_NAME=your_db_name
-SECRET_KEY=your_super_secret_flask_key
-JWT_SECRET_KEY=your_jwt_secret_key
-4. Run Application
-Bash
+## Configure Environment Variables
+
+Create:
+
+.env
+
+Configure:
+
+DB_HOST
+
+DB_USER
+
+DB_PASSWORD
+
+DB_NAME
+
+SECRET_KEY
+
+JWT_SECRET_KEY
+
+## Run Application
+
 python app.py
-🐳 Docker Production Deployment
-Build Containers
-Bash
+
+---
+
+# Docker Deployment
+
+## Build Containers
+
 docker compose build
-Start Containers (Detached Mode)
-Bash
+
+## Start Containers
+
 docker compose up -d
-View Running Containers
-Bash
+
+## View Running Containers
+
 docker ps
-🔮 Future Enhancements
-🔍 Advanced Querying: Add an employee search and multi-tiered filtering system.
 
-🏢 Department Management: Introduce organization structure handling.
+---
 
-📊 Analytics Dashboard: Build graphical representations of dynamic salary data.
+# Production URL
 
-✉️ Email Notifications: Send automated welcome alerts and updates.
+https://joel-ems.duckdns.org
 
-🔄 Self-Service: Password reset workflows via secure email links.
+---
 
-☁️ AWS RDS Migration: Offload database management to an Amazon RDS MySQL instance.
+# Future Enhancements
 
-⚖️ High Availability: Implement an AWS Application Load Balancer with Multi-AZ deployments.
+* Employee Search
+* Department Management
+* Salary Analytics Dashboard
+* Email Notifications
+* Password Reset Functionality
+* AWS RDS Migration
+* AWS Load Balancer Integration
+* Container Orchestration using Kubernetes
 
-☸️ Orchestration: Transition infrastructure workloads to a Kubernetes cluster.
+---
 
-✍️ Author
+# Author
+
 Joel Garvaziz
 
-Cloud & DevOps Capstone Project — 2026
+Cloud & DevOps Capstone Project
+
+2026
