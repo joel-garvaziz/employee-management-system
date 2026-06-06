@@ -3,6 +3,8 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import session
+from models.user import User
+from sqlalchemy import func
 
 from models.user import db
 from models.employee import Employee
@@ -11,6 +13,30 @@ employee_bp = Blueprint(
     "employee",
     __name__
 )
+@employee_bp.route("/dashboard")
+def dashboard():
+
+    if "user_id" not in session:
+        return redirect("/")
+
+    total_employees = Employee.query.count()
+
+    total_departments = (
+        db.session.query(
+            func.count(
+                func.distinct(Employee.department)
+            )
+        ).scalar()
+    )
+
+    total_users = User.query.count()
+
+    return render_template(
+        "dashboard.html",
+        total_employees=total_employees,
+        total_departments=total_departments,
+        total_users=total_users
+    )
 
 # Step 4 - Employee List Route
 @employee_bp.route("/employees")
@@ -27,7 +53,6 @@ def employees():
         "employees.html",
         employees=employee_list
     )
-
 
 # Step 5 - Add Employee Page
 @employee_bp.route("/employee/add")

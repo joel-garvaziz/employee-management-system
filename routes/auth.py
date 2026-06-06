@@ -3,6 +3,8 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import session
+from models.employee import Employee
+from sqlalchemy import func
 
 from flask_bcrypt import Bcrypt
 
@@ -80,10 +82,25 @@ def dashboard():
     if "user_id" not in session:
         return redirect("/")
 
+    total_employees = Employee.query.count()
+
+    total_departments = (
+        db.session.query(
+            func.count(
+                func.distinct(Employee.department)
+            )
+        ).scalar()
+    )
+
+    total_users = User.query.count()
+
     return render_template(
         "dashboard.html",
         username=session["username"],
-        role=session["role"]
+        role=session["role"],
+        total_employees=total_employees,
+        total_departments=total_departments,
+        total_users=total_users
     )
 
 
